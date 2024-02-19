@@ -9,6 +9,8 @@ const connectingElement = document.querySelector('.connecting');
 const logoutContainer = document.querySelector('.logout-container');
 const chatArea = document.querySelector('#chat-messages');
 const logout = document.querySelector('#logout');
+const toast = document.getElementById('toast');
+const closeToast = document.getElementById('toast-close');
 
 let stompClient = null;
 let nickname = null;
@@ -23,7 +25,7 @@ function connect(event) {
         usernamePage.classList.add('hidden');
         chatPage.classList.remove('hidden');
         logoutContainer.classList.remove('hidden');
-        logoutContainer.classList.add('show');
+        logoutContainer.classList.add('show-logout');
 
 
         const socket = new SockJS('/ws');
@@ -40,9 +42,12 @@ function onConnected() {
     stompClient.subscribe(`/user/public`, onMessageReceived);
 
     // register the connected user
-    stompClient.send("/app/user.addUser",
-        {},
-        JSON.stringify({nickName: nickname, fullName: fullname, status: 'ONLINE'})
+    stompClient.send("/app/user.addUser", {},
+        JSON.stringify({
+            nickName: nickname,
+            fullName: fullname,
+            status: 'ONLINE'
+        })
     );
     document.querySelector('#connected-user-fullname').textContent = fullname;
     findAndDisplayConnectedUsers().then();
@@ -173,17 +178,40 @@ async function onMessageReceived(payload) {
         nbrMsg.classList.remove('hidden');
         nbrMsg.textContent = '';
     }
+    const fullName = notifiedUser.querySelector('img').alt;
+    showToast('You got a message from ' + fullName)
 }
 
 function onLogout() {
-    stompClient.send("/app/user.disconnectUser",
-        {},
-        JSON.stringify({nickName: nickname, fullName: fullname, status: 'OFFLINE'})
+    stompClient.send("/app/user.disconnectUser", {},
+        JSON.stringify({
+            nickName: nickname,
+            fullName: fullname,
+            status: 'OFFLINE'
+        })
     );
     window.location.reload();
 }
+
+document.getElementById('toggle-users-list').addEventListener('click', function() {
+    document.querySelector('.users-list').classList.toggle('show');
+});
 
 usernameForm.addEventListener('submit', connect, true); // step 1
 messageForm.addEventListener('submit', sendMessage, true);
 logout.addEventListener('click', onLogout, true);
 window.onbeforeunload = () => onLogout();
+
+
+function showToast(message) {
+    document.getElementById('toast-message').textContent = message;
+    toast.classList.add('show');
+
+    setTimeout(function() {
+        toast.classList.remove('show');
+    }, 5000);
+}
+
+closeToast.onclick = function() {
+    toast.classList.remove('show');
+};

@@ -7,21 +7,29 @@
     <title>Chat Application</title>
 </head>
 <body>
-
+<div id="toast" class="toast">
+    <span id="toast-message">This is a toast message!</span>
+    <button id="toast-close" class="toast-close">&times;</button>
+</div>
 <div class="user-form" id="username-page">
     <h1>Random Chatroom</h1>
     <form id="usernameForm">
         <label for="nickname">Nickname:</label>
         <input type="text" id="nickname" name="nickname" required>
-
         <label for="fullname">Full Name:</label>
         <input type="text" id="fullname" name="fullname" required>
-            <button type="submit">Enter</button>
+        <button type="submit">Enter</button>
     </form>
 </div>
 <div class="hidden logout-container">
-    <p id="connected-user-fullname"></p>
-    <a class="logout" href="javascript:void(0)" id="logout">Logout</a>
+    <div id="connected-user">
+        <div id="connected-user-online"></div>
+        <p id="connected-user-fullname"></p>
+    </div>
+    <div id="user-nav">
+        <button id="toggle-users-list" onclick="launchToast()">Online Users</button>
+        <a class="logout" href="javascript:void(0)" id="logout">Logout</a>
+    </div>
 </div>
 <div class="chat-container hidden" id="chat-page">
     <div class="users-list">
@@ -31,11 +39,9 @@
             </ul>
         </div>
     </div>
-
     <div class="chat-area">
         <div class="chat-area" id="chat-messages">
         </div>
-
         <form id="messageForm" name="messageForm" class="hidden">
             <div class="message-input">
                 <input autocomplete="off" type="text" id="message" placeholder="Type your message...">
@@ -44,7 +50,6 @@
         </form>
     </div>
 </div>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 <script src="/js/main.js"></script>
