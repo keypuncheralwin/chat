@@ -2,7 +2,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #395B64;
+    background-color: #0f191c;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -12,13 +12,10 @@ body {
 
 .chat-container {
     display: flex;
-    max-width: 800px;
     min-width: 800px;
     min-height: 600px;
     max-height: 600px;
-    margin: 20px;
-    border: 1px solid #ccc;
-    background-color: #fff;
+    background-color: #1B262C;
     overflow: hidden;
     border-radius: 8px;
 }
@@ -27,11 +24,8 @@ body {
     flex: 1;
     border-right: 1px solid #ccc;
     padding: 20px;
-    box-sizing: border-box;
-    background-color: #3498db;
-    color: #fff;
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
+    background-color: #395B64;
+    color: #DCD6F7;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -58,13 +52,13 @@ body {
     align-items: center;
     margin-bottom: 8px;
     cursor: pointer;
+    padding: 5px;
 }
 
 .user-item.active {
-    background-color: #cdebff;
-    color: #4f4f4f;
-    padding: 10px;
     border-radius: 5px;
+    background-color: #EEEEEE;
+    color: #1B262C;
 }
 
 .user-item img {
@@ -76,12 +70,6 @@ body {
 
 .user-item span {
     font-weight: bold;
-}
-
-.separator {
-    height: 1px;
-    background-color: #ccc;
-    margin: 10px 0;
 }
 
 .chat-area {
@@ -158,20 +146,20 @@ body {
 .user-form {
     max-width: 400px;
     padding: 40px;
-    box-sizing: border-box;
-    background-color: #fff;
-    border-radius: 8px;
+    color: #DCD6F7;
 }
 
 .user-form h2 {
     font-size: 1.5rem;
     margin-bottom: 20px;
     text-align: center;
+    color: #DCD6F7;
 }
 
 .user-form label {
     display: block;
     margin-bottom: 8px;
+    color: #DCD6F7;
 }
 
 .user-form input {
@@ -196,7 +184,44 @@ body {
     display: none;
 }
 
-a.logout {
-    color: #fff;
-    text-decoration: none;
+.logout-container{
+     justify-content: space-between;
+     color: #DCD6F7;
+     align-items: center;
+     min-width: 800px;
+     padding: 0;
 }
+
+.show {
+    display: flex;
+}
+
+a.logout {
+    text-decoration: none;
+    color: #DCD6F7;
+
+}
+
+.users-list-container, #chat-messages  {
+    overflow-y: auto;
+}
+
+/* Scrollbar styling for modern and thin appearance */
+::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+}
+
+::-webkit-scrollbar-track {
+    background: #575b61;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #b8bbbf;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #ced5de;
+}
+
