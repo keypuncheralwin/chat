@@ -11,6 +11,8 @@ const chatArea = document.querySelector('#chat-messages');
 const logout = document.querySelector('#logout');
 const toast = document.getElementById('toast');
 const closeToast = document.getElementById('toast-close');
+const toggleUsersListButton = document.getElementById('toggle-users-list');
+const usersList = document.querySelector('.users-list');
 
 let stompClient = null;
 let nickname = null;
@@ -95,6 +97,7 @@ function userItemClick(event) {
         item.classList.remove('active');
     });
     messageForm.classList.remove('hidden');
+    usersList.classList.toggle('show');
 
     const clickedUser = event.currentTarget;
     clickedUser.classList.add('active');
@@ -193,8 +196,8 @@ function onLogout() {
     window.location.reload();
 }
 
-document.getElementById('toggle-users-list').addEventListener('click', function() {
-    document.querySelector('.users-list').classList.toggle('show');
+toggleUsersListButton.addEventListener('click', function() {
+    usersList.classList.toggle('show');
 });
 
 usernameForm.addEventListener('submit', connect, true); // step 1
