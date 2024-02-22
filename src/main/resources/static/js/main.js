@@ -42,6 +42,7 @@ function connect(event) {
 function onConnected() {
     stompClient.subscribe(`/user/${nickname}/queue/messages`, onMessageReceived);
     stompClient.subscribe(`/user/public`, onMessageReceived);
+    document.querySelector('#connected-user-fullname').textContent = fullname;
 
     // register the connected user
     stompClient.send("/app/user.addUser", {},
@@ -51,15 +52,15 @@ function onConnected() {
             status: 'ONLINE'
         })
     );
-    document.querySelector('#connected-user-fullname').textContent = fullname;
     findAndDisplayConnectedUsers().then();
 }
 
 async function findAndDisplayConnectedUsers() {
+    const connectedUsersList = document.getElementById('connectedUsers');
+    connectedUsersList.innerHTML = '<h3>Loading Online Users...</h3>';
     const connectedUsersResponse = await fetch('/users');
     let connectedUsers = await connectedUsersResponse.json();
     connectedUsers = connectedUsers.filter(user => user.nickName !== nickname);
-    const connectedUsersList = document.getElementById('connectedUsers');
     connectedUsersList.innerHTML = '';
 
     connectedUsers.forEach(user => {

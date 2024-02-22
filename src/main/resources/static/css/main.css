@@ -235,7 +235,7 @@ body {
      padding: 16px;
      position: fixed;
      z-index: 50;
-     left: 48%;
+     left: 46%;
      top: 346px;
      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
      opacity: 0;
@@ -243,10 +243,12 @@ body {
      display: flex;
      justify-content: space-between;
      align-items: center;
+     border-radius: 8px;
 }
  .toast.show {
      visibility: visible;
      opacity: 1;
+     opacity: 92%;
 }
  .toast-close {
      float: right;
@@ -295,7 +297,7 @@ body {
          padding-right: 5px;
     }
      .toast {
-         left: 46%;
+         left: 44%;
          top: 58px;
     }
 }
