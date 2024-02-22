@@ -174,7 +174,7 @@ body {
      align-items: center;
 }
  #connected-user-online {
-     margin-right: 10px;
+     margin-left: 10px;
      background-color: #089e17;
      color: white;
      padding: 1px;
@@ -259,6 +259,29 @@ body {
      cursor: pointer;
      color: #fff;
      padding: 10px;
+}
+.users-list-header{
+    display: flex;
+    align-items: center;
+}
+.loading {
+  width: 7px;
+  height: 7px;
+  background-color: #089e17;
+  border: 3px solid #089e17;
+  border-radius: 50%;
+  margin-top: 10px;
+  margin-left: 5px;
+}
+.loading-animation {
+  border: 3px solid #ddd;
+  border-top-color: #089e17;
+  animation: loading 1s linear infinite;
+}
+@keyframes loading {
+  to {
+    transform: rotate(360deg);
+  }
 }
  @media (max-width: 768px) {
      .chat-container {

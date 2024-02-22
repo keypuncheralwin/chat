@@ -13,6 +13,7 @@ const toast = document.getElementById('toast');
 const closeToast = document.getElementById('toast-close');
 const toggleUsersListButton = document.getElementById('toggle-users-list');
 const usersList = document.querySelector('.users-list');
+const loading = document.querySelector('.loading');
 
 let stompClient = null;
 let nickname = null;
@@ -56,8 +57,8 @@ function onConnected() {
 }
 
 async function findAndDisplayConnectedUsers() {
+    loading.classList.add('loading-animation')
     const connectedUsersList = document.getElementById('connectedUsers');
-    connectedUsersList.innerHTML = '<h3>Loading Online Users...</h3>';
     const connectedUsersResponse = await fetch('/users');
     let connectedUsers = await connectedUsersResponse.json();
     connectedUsers = connectedUsers.filter(user => user.nickName !== nickname);
@@ -66,6 +67,7 @@ async function findAndDisplayConnectedUsers() {
     connectedUsers.forEach(user => {
         appendUserElement(user, connectedUsersList);
     });
+    loading.classList.remove('loading-animation');
 }
 
 function appendUserElement(user, connectedUsersList) {

@@ -23,8 +23,8 @@
 </div>
 <div class="hidden logout-container">
     <div id="connected-user">
-        <div id="connected-user-online"></div>
         <p id="connected-user-fullname"></p>
+        <div id="connected-user-online"></div>
     </div>
     <div id="user-nav">
         <button id="toggle-users-list" onclick="launchToast()">Online Users</button>
@@ -34,7 +34,9 @@
 <div class="chat-container hidden" id="chat-page">
     <div class="users-list">
         <div class="users-list-container">
-            <h2>Online Users</h2>
+            <div class="users-list-header">
+            <h2>Online Users</h2><div class="loading"></div>
+            </div>
             <ul id="connectedUsers">
             </ul>
         </div>
